@@ -1,0 +1,66 @@
+  --users Table
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    fullname VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    password VARCHAR(255),
+    role ENUM('student','admin') DEFAULT 'student',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+  --lost_items Table
+CREATE TABLE lost_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    item_name VARCHAR(100),
+    description TEXT,
+    location_lost VARCHAR(255),
+    reward DECIMAL(10,2),
+    image VARCHAR(255),
+    status ENUM('lost','found','claimed') DEFAULT 'lost',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+  --found_items Table
+CREATE TABLE found_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    item_name VARCHAR(100),
+    description TEXT,
+    location_found VARCHAR(255),
+    image VARCHAR(255),
+    status ENUM('available','claimed') DEFAULT 'available',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+  --Claims Table
+CREATE TABLE claims (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    item_id INT,
+    claimant_id INT,
+    proof TEXT,
+    status ENUM('pending','approved','rejected') DEFAULT 'pending'
+);
+   --Study Rooms Table
+CREATE TABLE study_rooms (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    room_name VARCHAR(100),
+    capacity INT
+);
+  --Bookings Table
+CREATE TABLE bookings (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    room_id INT,
+    user_id INT,
+    booking_date DATE,
+    start_time TIME,
+    end_time TIME
+);
+  --Events Table
+CREATE TABLE events (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255),
+    category VARCHAR(100),
+    event_date DATE,
+    start_time TIME,
+    end_time TIME,
+    location VARCHAR(255),
+    description TEXT
+);
