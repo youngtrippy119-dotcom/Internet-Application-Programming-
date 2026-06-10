@@ -1,6 +1,10 @@
 <?php
 
 include "../config/database.php";
+if (!isset($pdo) && isset($conn)) {
+    $pdo = $conn;
+}
+$data = json_decode(file_get_contents("php://input"));
 
 $data = json_decode(file_get_contents("php://input"));
 
