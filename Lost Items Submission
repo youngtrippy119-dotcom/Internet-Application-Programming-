@@ -1,0 +1,26 @@
+<?php
+
+include "../config/database.php";
+
+$item_name = $_POST['item_name'];
+$description = $_POST['description'];
+$location = $_POST['location'];
+$reward = $_POST['reward'];
+
+$sql = "INSERT INTO lost_items
+(item_name,description,location_lost,reward)
+VALUES(?,?,?,?)";
+
+$stmt = $pdo->prepare($sql);
+
+$stmt->execute([
+$item_name,
+$description,
+$location,
+$reward
+]);
+
+echo json_encode([
+"message"=>"Lost Item Posted"
+]);
+?>
