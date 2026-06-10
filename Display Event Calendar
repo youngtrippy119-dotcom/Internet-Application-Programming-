@@ -1,0 +1,29 @@
+async function loadEvents(){
+
+const response =
+await fetch("api/events.php");
+
+const events =
+await response.json();
+
+let html = "";
+
+events.forEach(event => {
+
+html += `
+<div class="event-card">
+<h3>${event.title}</h3>
+<p>${event.category}</p>
+<p>${event.event_date}</p>
+<p>${event.location}</p>
+</div>
+`;
+
+});
+
+document
+.getElementById("events")
+.innerHTML = html;
+}
+
+loadEvents();
