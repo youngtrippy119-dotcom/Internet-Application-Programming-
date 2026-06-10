@@ -2,6 +2,12 @@
 
 include "../config/database.php";
 
+if (!isset($pdo)) {
+    http_response_code(500);
+    echo json_encode(["error" => "Database connection not initialized."]);
+    exit;
+}
+
 $data = json_decode(
 file_get_contents("php://input")
 );
